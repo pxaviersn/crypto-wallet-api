@@ -1,6 +1,6 @@
 import { Router } from "express";
-import OperationModel from "../models/Operation.Model.js";
-import UserModel from '../models/User.Model.js';
+import OperationModel from "../models/Operation.model.js";
+import UserModel from '../models/User.model.js';
 import isAuthenticatedMiddleware from '../middlewares/isAuthenticatedMiddleware.js'
 import 'dotenv/config'
 import jwt from 'jsonwebtoken';
