@@ -1,6 +1,6 @@
 import { Router } from "express";
-import CommentModel from "../models/comment.model.js";
-import UserModel from '../models/user.model.js';
+import CommentModel from "../models/Comment.model.js";
+import UserModel from '../models/User.model.js';
 import isAuthenticatedMiddleware from '../middlewares/isAuthenticatedMiddleware.js'
 
 const CommentRouter = Router()
