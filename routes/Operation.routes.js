@@ -1,5 +1,5 @@
 import { Router } from "express";
-import Operation from "../models/Operation.model.js";
+import OperationModel from "../models/Operation.model.js";
 import UserModel from '../models/User.model.js';
 import isAuthenticatedMiddleware from '../middlewares/isAuthenticatedMiddleware.js'
 import 'dotenv/config'
@@ -9,7 +9,7 @@ const OperationsRouter = Router()
 
 OperationsRouter.get('/operations/user', isAuthenticatedMiddleware, async (req, res) => {
     try {
-        const operations = await Operation.find({ user: req.user.id })
+        const operations = await OperationModel.find({ user: req.user.id })
         return res.status(200).json(operations)   
     } catch (error) {
         console.log(error)
@@ -21,7 +21,7 @@ OperationsRouter.post('/operations/user', isAuthenticatedMiddleware, async (req,
     const payload = { ...req.body, user: req.user.id }
 
     try {
-        const newOperation = await Operation.create(payload)
+        const newOperation = await OperationModel.create(payload)
 
         await UserModel.findOneAndUpdate({_id: req.user.id}, {$push: {Operations: newOperation._id }})
 
@@ -36,7 +36,7 @@ OperationsRouter.put('/operations/user/:id', isAuthenticatedMiddleware, async (r
     const { id } = req.params
     const payload = req.body
     try {
-        const updatedOperation = await Operation.findOneAndUpdate(
+        const updatedOperation = await OperationModel.findOneAndUpdate(
             {_id: id, user: req.user.id}, 
             payload, 
             { new: true }
@@ -51,7 +51,7 @@ OperationsRouter.put('/operations/user/:id', isAuthenticatedMiddleware, async (r
 OperationsRouter.delete('/operations/user/:id', isAuthenticatedMiddleware, async (req, res) => {
     const { id } = req.params
     try {
-        await Operation.findOneAndDelete({_id: id, user: req.user.id})
+        await OperationModel.findOneAndDelete({_id: id, user: req.user.id})
         return res.status(204).json()  
     } catch (error) {
         console.log(error)
