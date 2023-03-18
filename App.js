@@ -2,7 +2,7 @@ import dotenv from 'dotenv/config'
 import express from 'express'
 import cors from 'cors'
 import connectDB from './config/db.connection.js'
-import OperationsRouter from './routes/Operation.routes.js'
+import OperationsRouter from './routes/operation.routes.js'
 import authRouter from './routes/auth.routes.js'
 import CommentRouter from './routes/Comment.routes.js'
 
