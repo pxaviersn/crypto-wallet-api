@@ -1,6 +1,6 @@
 import { Router } from "express";
 import Operation from '../models/operation.model.js';
-import UserModel from '../models/User.model.js';
+import UserModel from '../models/user.model.js';
 import isAuthenticatedMiddleware from '../middlewares/isAuthenticatedMiddleware.js'
 import 'dotenv/config'
 
